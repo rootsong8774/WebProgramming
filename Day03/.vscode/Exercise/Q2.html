@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Input Form</title>
+    <style>
+        body {
+            background-color: grey;
+            color: black;
+        }
+        input {
+            width: 200px;
+            border-radius: 8px;
+            border-width: 0px;
+        }
+        input[type="submit"] {
+            margin: 0px;
+            height: 17px;
+            line-height: 17px;
+            width: 203px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>간단한 입력 양식</h1>
+    <table>
+        <form>
+            <tr></tr>
+            <th><label for="id">아이디</label></th>
+            <td><input type="text" id="id"></td>
+            <tr></tr>
+            <th><label for="password">비밀번호</label></th>
+            <td><input type="text" id="password"></td>
+            <tr></tr>
+            <th></th>
+            <td><input type="submit" id="제출"></td>
+        </form>
+    </table>
+</body>
+</html>
