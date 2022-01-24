@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Survey</title>
+    <link rel="stylesheet" href="desktop.css" media="screen and (min-width: 960px)"/>
+  </head>
+  <body>
+    <header id="surveyHeader">
+      <h1>설문지</h1>
+      소프트웨어 기술에 대한 의견을 듣습니다.
+    </header>
+    <div id="content">
+        <section id="survey">
+      <form>
+        <p>
+          학년 <input type="radio" name="grade" checked value="1" /> 1학년
+          <input type="radio" name="grade" value="2" /> 2학년
+          <input type="radio" name="grade" value="3" /> 3학년
+        </p>
+        <p>
+          성별 <input type="radio" name="gender" value="male" /> 남
+          <input type="radio" name="gender" value="female" /> 여
+        </p>
+        <p>
+          관심분야
+          <select>
+            <option value="1">모바일 소프트웨어</option>
+            <option value="2">웹서비스</option>
+            <option value="3">데이터 분석</option>
+            <option value="4">디지털 컨텐츠</option>
+          </select>
+        </p>
+        <p>
+          진로 <input type="radio" name="job" checked value="1" /> 개발
+          <input type="radio" name="job" value="2" /> 개발
+          <input type="radio" name="job" value="3" /> 영업
+          <input type="radio" name="job" value="4" /> 창업
+        </p>
+        <p>
+          남기고 싶은 말 <textarea name="" id="" cols="30" rows="10"></textarea>
+        </p>
+      </form>
+      </section>
+    </div>
+    <footer>
+      <div>Copyright 2021 by references</div>
+    </footer>
+  </body>
+</html>
