@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@types/jquery": "^3.5.13"
+  },
+  "name": "webprogramming",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rootsong8774/WebProgramming.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rootsong8774/WebProgramming/issues"
+  },
+  "homepage": "https://github.com/rootsong8774/WebProgramming#readme",
+  "description": ""
+}
