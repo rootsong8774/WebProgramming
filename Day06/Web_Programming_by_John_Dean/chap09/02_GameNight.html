@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game Night</title>
+    <script>
+      function partyOn() {
+        if (confirm("Can you handle the excitement?")) {
+          window.location.assign(
+            "http://www.park.edu/clubs-and-organizations/active-student-clubs.html"
+          );
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Park ACM Club Game Night</h1>
+    <p>
+      Join Park's ACM Club for another wild and crazy night of computer fun!
+    </p>
+    <ul>
+      <li>Play computer games!</li>
+      <li>Talk about computers!</li>
+      <li>Win posters of your favorit computers!</li>
+    </ul>
+    <p>Confirm your reservation now by clicking below.</p>
+    <input type="button" value="Party Reservation" onclick="partyOn();" />
+  </body>
+</html>

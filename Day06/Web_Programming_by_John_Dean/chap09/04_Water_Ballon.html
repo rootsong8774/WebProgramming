@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Ballon Fun</title>
+    <script>
+      function calculateWater(form) {
+        var qty, diameter, gallons;
+        qty = form.elements["qty"];
+        diameter = form.elements["diameter"];
+        var totalWater = form.elements["total-water"];
+        if (!form.checkValidity()) {
+          totalWater.value = "";
+          if (!qty.checkValidity() && diameter.checkValidity()) {
+            totalWater.value = "풍선의 수를 조정하세요(0-99)";
+          } else if (qty.checkValidity() && !diameter.checkValidity()) {
+            totalWater.value = "풍선의 직경을 조정하세요(0-12)";
+          } else if (!qty.checkValidity() && !diameter.checkValidity()) {
+            totalWater.value = "모두 유효하지 않은 값이 입력 되었습니다.";
+          }
+        } else {
+          gallons =
+            ((qty.valueAsNumber * 4) / 3) *
+            Math.PI *
+            Math.pow(diameter.valueAsNumber / 2, 3);
+          var totalWater = form.elements["total-water"];
+          totalWater.value = "필요한 물의 양: " + gallons.toFixed(1);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Water Ballon Fun</h1>
+    <form class="table" id="myForm">
+      <div class="row">
+        <label for="qty">물풍선 수 :</label>
+        <input type="number" id="qty" min="0" max="99" step="1" required />
+      </div>
+      <div class="row">
+        <label for="diameter">물풍선 크기 : </label>
+        <input
+          type="number"
+          id="diameter"
+          min="0"
+          max="12"
+          step=".01"
+          required
+        />
+      </div>
+    </form>
+    <br />
+    <div class="bottom">
+      <input
+        type="button"
+        form="myForm"
+        value="Calculate water"
+        onclick="calculateWater(this.form);"
+      />
+      <br /><br />
+      <output id="total-water" form="myForm"></output>
+    </div>
+  </body>
+</html>
