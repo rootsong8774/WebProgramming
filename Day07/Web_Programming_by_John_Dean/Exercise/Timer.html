@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+    <style>
+      #wrapper {
+        width: 400px;
+        height: 200px;
+        margin: 0 auto;
+        padding-top: 20px;
+        border: 1px solid #eee;
+        text-align: center;
+      }
+      input[type="text"] {
+        width: 50px;
+        height: 20px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      input[type="button"] {
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        border-radius: 10%;
+        border: 1px solid #ddd;
+      }
+
+      .start-btn {
+        margin-left: 30px;
+        background-color: rgb(0, 153, 51);
+        color: white;
+      }
+      .start-btn:hover {
+        background-color: #0c4;
+      }
+      .reset-btn {
+        background-color: #222;
+        color: #fff;
+      }
+      .reset-btn:hover {
+        background-color: #666;
+      }
+      hr {
+        margin-top: 20px;
+        border: 1px dashed #eee;
+        width: 96%;
+      }
+      
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="Timer.js"></script>
+    
+  </head>
+  <body>
+    <div id="wrapper">
+      <form>
+        <label><input type="text" id="startMin" />분</label>
+        <label><input type="text" id="startSec" />초</label>
+        <label
+          ><input
+            type="button"
+            value="START"
+            class="start-btn"
+            onclick="startTimer()"
+        /></label>
+        <label
+          ><input
+            type="button"
+            value="RESET"
+            class="reset-btn"
+            onclick="resetTimer()"
+        /></label>
+      </form>
+      <hr />
+      <div class="remaining" id="display"></div>
+    </div>
+  </body>
+</html>

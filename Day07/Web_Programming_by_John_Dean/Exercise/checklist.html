@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check List</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      #wrapper {
+        width: 600px;
+        margin: 0 auto;
+      }
+      h2 {
+        text-align: center;
+      }
+      form {
+        background-color: #007acc;
+        padding: 30px 40px;
+        color: white;
+        text-align: center;
+      }
+      input {
+        border: none;
+        width: 440px;
+        padding: 10px;
+        float: left;
+        font-size: 16px;
+      }
+      .addBtn {
+        padding: 10px;
+        width: 50px;
+        border: none;
+        background-color: #fff;
+        box-shadow: 1px 2px 4px #167dae;
+        color: #555;
+        text-align: center;
+        font-size: 14px;
+        cursor: pointer;
+        transition: 0.3;
+      }
+    </style>
+    <style>
+      form::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      ul li {
+        cursor: pointer;
+        position: relative;
+        padding: 12px 8px 12px 40px;
+        background-color: #eee;
+        font-size: 18px;
+        transition: 0.2s;
+      }
+      ul li:nth-child(odd) {
+        background-color: #fff;
+      }
+      ul li:hover {
+        background-color: #ddd;
+      }
+      .close {
+        position: absolute;
+        right: 0;
+        padding: 0px 16px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h2>여행 준비물 점검 목록</h2>
+      <form>
+        <input type="text" id="item" autocomplete="true" autofocus />
+        <button id="add" class="addBtn">추가</button>
+      </form>
+      <div id="itemList">
+        <ul>
+          <li>생수<span class="close">X</span></li>
+          <li>손전등<span class="close">X</span></li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>
