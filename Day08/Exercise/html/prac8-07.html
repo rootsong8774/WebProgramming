@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Target of Event Object</title>
+    <style>
+        span {
+            font-weight: bold;
+        }
+    </style>
+  </head>
+  <body>
+    <h2>Mouse event on span tag only</h2>
+    <hr />
+    <p>
+      <span>Lorem ipsum dolor sit amet,</span> consectetur adipiscing elit, sed
+      do eiusmod tempor incididunt
+      <span>ut labore et dolore magna</span> aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. <span>Duis aute irure dolor in reprehenderit</span> in
+      voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+      sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+      mollit anim id est laborum.
+    </p>
+
+    <script>
+      const spanTags = document.querySelectorAll("span");
+
+      function getTarget(e) {
+        if (!e) {
+          e = window.event;
+        }
+        return e.target || e.srcElement;
+      }
+      function getUnderlined(e) {
+        var target;
+        target = getTarget(e);
+        if (target.nodeName.toLowerCase() == "span") {
+          target.style.textDecoration = "underline";
+        }
+      }
+      function getDefault(e) {
+        var target;
+        target = getTarget(e);
+        if (target.nodeName.toLowerCase() == "span") {
+          target.style.textDecoration = "";
+        }
+      }
+      for (const spanTag of spanTags) {
+        spanTag.addEventListener(
+          "mouseover",
+          function (e) {
+            getUnderlined(e);
+          },
+          false
+        );
+      }
+      for (const spanTag of spanTags) {
+        spanTag.addEventListener(
+          "mouseout",
+          function (e) {
+            getDefault(e);
+          },
+          false
+        );
+      }
+    </script>
+  </body>
+</html>

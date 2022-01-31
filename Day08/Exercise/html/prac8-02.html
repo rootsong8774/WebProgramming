@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Radio and Print image</title>
+  </head>
+  <body>
+    <h2>Clicking the radio button, print the corresponding image.</h2>
+    <hr />
+    <label>
+      <input type="radio"  name="fruit" value="../media/banana" onclick="getFruitName();" />
+    </label>
+    Banana
+    <label>
+      <input type="radio"  name="fruit" value="../media/mango" onclick="getFruitName();" />
+    </label>
+    Mango
+    <label>
+      <input type="radio"  name="fruit" value="../media/apple" onclick="getFruitName();" />
+    </label>
+    Apple
+    <div id="image"></div>
+    <script>
+      function getFruitName(){
+        var imgName =document.querySelector('input[name="fruit"]:checked').value;
+        document.getElementById("image").innerHTML = '<img src="' + imgName + '.png" alt="">';
+    }
+    </script>
+  </body>
+</html>

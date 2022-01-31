@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onmousemove</title>
+    <style>
+        .body { 
+            position: relative;
+        }
+        img {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+    
+  </head>
+  <body>
+    <h2>Create the image cursor.</h2>
+    <hr />
+    <p>Moving the mouse cursor, the image follows the cursor.</p>
+    <img id="cursor" src="../media/spongebob.png", alt="">
+    <script>
+        var cursor = document.getElementById("cursor");
+        window.onmousemove = function (event) {
+            var px = event.pageX+"px";
+            var py = event.pageY+"px";
+            console.log(px);
+            console.log(py);
+            cursor.style.top =py;
+            cursor.style.left=px;
+        }
+    </script>
+  </body>
+</html>

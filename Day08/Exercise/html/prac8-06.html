@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>onWheel</title>
+  </head>
+  <body>
+    <h2>Zoom in and Zoom out using mouse wheel</h2>
+    <p>The image zooms in(out) when mouse wheel scrolls down(up).</p>
+    <img id="tulips" src="../media/tulips.png" alt="" />
+    <script>
+      window.onload = function () {
+        const img = new Image();
+        img.src = "../media/tulips.png";
+        let width = img.width;
+        console.log(width + "px");
+        let height = img.height;
+        const ratio = width / height;
+        var imgTulips = document.getElementById("tulips");
+        var unit = 10;
+
+        function zoomIn() {
+          width = ratio * (height + unit);
+          height += unit;
+          imgTulips.style.width = width + "px";
+          imgTulips.style.height = height + "px";
+          return false;
+        }
+
+        function zoomOut() {
+          width = ratio * (height - unit);
+          height -= unit;
+          imgTulips.style.width = width + "px";
+          imgTulips.style.height = height + "px";
+          return false;
+        }
+        imgTulips.onwheel = function (e) {
+          if (e.wheelDelta === -120) {
+            zoomIn();
+          } else if (e.wheelDelta === 120) {
+            zoomOut();
+          }
+        };
+      };
+    </script>
+  </body>
+</html>

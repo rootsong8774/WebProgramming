@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    
+</head>
+<body>
+    <h2>Calculator</h2>
+    <hr>
+    <p>Input a numerical expression and &lt;Enter&gt; Key.</p>
+    <div>
+        <label for="numEx">식</label>
+        <input type="text" id="numEx"> <br>
+        <label for="result">값</label>
+        <input type="text" id="result">
+    </div>
+    <div id="resultDisplay"></div>
+    <script>
+        var elNumEx = document.querySelector('#numEx');
+        var elResult = document.querySelector('#result');
+        function getResult() {
+            var result = eval(elNumEx.value);
+            elResult.value = result;
+        }
+        elNumEx.onkeyup = function (e)  { 
+            if(e.keyCode==13 || e.which==10) {
+                getResult();
+                elNumEx.value = "";
+                return false;                
+            }
+
+        };
+        
+    </script>
+</body>
+</html>
