@@ -1,9 +1,12 @@
 {
   "dependencies": {
-    "@types/jquery": "^3.5.13"
+    "@types/jquery": "^3.5.13",
+    "node-fetch": "^3.2.0",
+    "whatwg-fetch": "^3.6.2"
   },
   "name": "webprogramming",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
