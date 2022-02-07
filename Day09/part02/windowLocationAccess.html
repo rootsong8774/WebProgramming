@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function load() {
+            let select = document.getElementById("site");
+            window.location = select.options[select.selectedIndex].value;
+        }
+    </script>
+</head>
+
+<body>
+    <h3>window.location으로 웹사이트 접속</h3>
+    <hr>
+    사이트 선택:
+    <select name="" id="site">
+        <option value="https://www.naver.com" selected>Naver</option>
+        <option value="https://www.google.com">Google</option>
+        <option value="https://www.microsoft.com">Microsoft</option>
+    </select>
+    <p>
+        <button onclick="load()">Access</button>
+    </p>
+</body>
+
+</html>

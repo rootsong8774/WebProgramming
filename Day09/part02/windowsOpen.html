@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let newWin = null;
+        function load(url) {
+            newWin = window.open(url, "myWin", "left=300, top=300, width=500, height=450");
+        }
+
+        function closeWindow() {
+            if (newWin == null || newWin.closed) {
+                return;
+            } else {
+                newWin.close();
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h3>Windows.close()</h3>
+    <a href="http://www.disneyworld.com" target="_blank">Open with new tab(DisneyWorld)</a><br>
+    <a href="http://www.disneyworld.com" target="_parent">Open in current Window(DisneyWorld)</a><br>
+    <a href="http://www.disneyworld.com" target="_self">Open with new Window(DisneyWorld)</a><br>
+    <a href="http://www.disneyworld.com" target="_top">Open with new Window(DisneyWorld)</a><br>
+    <a href="javascript:load('http://www.disneyworld.com')">Open with new tab(DisneyWorld)</a><br>
+    <a href="javascript:window.close()">Close the current Window</a><br>
+    <a href="javascript:closeWindow()">Close new Window</a>
+    <hr>
+
+</body>
+
+</html>

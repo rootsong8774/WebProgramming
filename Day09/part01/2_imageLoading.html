@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let files = ["../media/Chrysanthemum.png", "../media/Desert.png", "../media/Hydrangeas.png", "../media/Jellyfish.png", 
+                        "../media/Koala.png", "../media/Lighthouse.png", "../media/Penguins.png", "../media/Tulips.png"];
+        let imgs = new Array();
+        for(var i = 0; i< files.length; i++) {
+            imgs[i] = new Image();
+            imgs[i].src = files[i];
+        }
+        let next = 1;
+        function change(img) { 
+            img.src = imgs[next].src;
+            next++;
+            next %= imgs.length;
+        }
+    </script>
+</head>
+
+<body>
+    이미지를 클릭하면 다음 이미지를 보여줍니다.
+    <div>
+        <img src="../media/Penguins.png" alt="" width="200px" height="200px" style="border: 10px ridge wheat"
+            onclick="change(this)">
+    </div>
+    
+</body>
+
+</html>

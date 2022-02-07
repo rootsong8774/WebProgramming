@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("../media/snow.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+
+        div.snow {
+            position: absolute;
+            font-size: 40px;
+            color: white;
+            padding: 0px;
+            margin: 0px;
+        }
+    </style>
+    <script>
+        const numOfSnow = 30;
+        let snow = new Array(numOfSnow);
+        let x = new Array(numOfSnow);
+        let y = new Array(numOfSnow);
+        let speedOfFall = new Array(numOfSnow);
+        let speedOfWind = new Array(numOfSnow);
+        let step = new Array(numOfSnow);
+        function fall() {
+            for (i = 0; i < numOfSnow; i++) {
+                y[i] += speedOfFall[i];
+                x[i] += Math.cos(speedOfWind[i]);
+                if (y[i] >= window.innerHeight - 60) {
+                    x[i] = Math.floor(Math.random() * window.innerWidth);
+                    y[i] = 0;
+                    speedOfFall[i] = Math.random * 2 + 2;
+                }
+                if (x[i] >= window.innerWidth - 50) {
+                    x[i] = window.innerWidth - 50;
+                } else if (x[i] < 0) {
+                    x[i] = 50;
+                } 
+                snow[i].style.top = y[i] + "px";
+                snow[i].style.left = x[i] +"px";
+
+                speedOfWind[i] += step[i];
+            }
+            setTimeout("fall()", 50);
+        }
+        
+    </script>
+   
+</head>
+
+<body onload="fall()">
+    <div class="snow" id="snowobj" style="top: 10px; left: 10px">*</div>
+    <script>
+        makeSnow();
+        function makeSnow() {
+            for (let i = 0; i < numOfSnow; i++) {
+                x[i] = Math.floor(Math.random() * window.innerWidth - 10);
+                y[i] = Math.floor(Math.random() * window.innerHeight + 10);
+                speedOfFall[i] = Math.random() * 2 + 2;
+                speedOfWind[i] = 1;
+                step[i] = Math.random() * 0.1 + 0.05;
+                let divTag = "<div class='snow' id=snowobj"+i+ " style='top: "+ +y[i] +"px; left: "+ x[i]+"px'>*</div>";
+                document.write(divTag);
+                snow[i] = document.getElementById("snowobj" + i)
+            }
+        }
+    </script>
+</body>
+
+</html>
