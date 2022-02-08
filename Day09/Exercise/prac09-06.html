@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout()/clearTimeout()</title>
+    <style>
+        #clock {
+            display: inline-block;
+            width: 120px;
+            border: 1px solid gray;
+            background-color: aliceblue;
+        }
+
+        .clicked {
+            display: inline-block;
+            width: 120px;
+            border: 1px solid gray;
+            background-color: aliceblue;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body onload="startClock()">
+    <h3>div 태그에 시계 만들기</h3>
+    <p>시계를 클릭하면 시계가 멈추고 다시 클릭하면 가기 시작한다.</p>
+    <hr>
+
+</body>
+<script>
+    let div = document.createElement('div');
+    div.id = 'clock';
+    document.body.appendChild(div);
+    const clock = document.querySelector("#clock");
+
+    let cInterval = null;
+
+    function addZero(num, digit) {
+        let zero = '';
+        num = num.toString();
+        if (num.length < digit) {
+            for (i = 0; i < digit - num.length; i++) {
+                zero += '0';
+            }
+        }
+        return zero + num;
+    }
+    function showClock() {
+        let now = new Date();
+        let hours = addZero(now.getHours(), 2);
+        let minutes = addZero(now.getMinutes(), 2);
+        let seconds = addZero(now.getSeconds(), 2);
+        let amPm = '오전';
+
+        if (hours >= 12) {
+            amPm = '오후';
+            hours = addZero(hours - 12, 2);
+        }
+        div.innerText = amPm + ' ' + hours + ':' + minutes + ':' + seconds;
+    }
+
+    function startClock() {
+        showClock();
+        cInterval = setInterval(showClock, 1000);
+    }
+
+    function stopClock() {
+        if (cInterval != null) {
+            clearInterval(cInterval);
+        }
+    }
+    clock.addEventListener('click', () => {
+        const currentClass = clock.className;
+        if (currentClass == 'clicked') {
+            clock.className = '';
+            startClock();
+        } else {
+            clock.className = 'clicked';
+            stopClock();
+        }
+    })
+
+</script>
+
+</html>

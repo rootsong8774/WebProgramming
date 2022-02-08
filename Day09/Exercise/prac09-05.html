@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setTimeout()/clearTimeout()</title>
+    <style>
+        div {
+            display: inline-block;
+            width: 120px;
+            border: 1px solid gray;
+            background-color: aliceblue;
+        }
+    </style>
+
+</head>
+
+<body onload="clock()">
+    <h3>div 태그에 시계 만들기</h3>
+    <hr>
+
+</body>
+<script>
+    let div = document.createElement('div');
+
+    document.body.appendChild(div);
+    function clock() {
+        let now = new Date();
+        let hours = addZero(now.getHours(), 2);
+        let minutes = addZero(now.getMinutes(), 2);
+        let seconds = addZero(now.getSeconds(), 2);
+        let amPm = '오전';
+
+        if (hours >= 12) {
+            amPm = '오후';
+            hours = addZero(hours - 12, 2);
+        }
+
+        div.innerText = amPm + ' ' + hours + ':' + minutes + ':' + seconds;
+
+    }
+
+
+    function addZero(num, digit) {
+        let zero = '';
+        num = num.toString();
+        if (num.length < digit) {
+            for (i = 0; i < digit - num.length; i++) {
+                zero += '0';
+            }
+        }
+        return zero + num;
+    }
+    setInterval(clock, 1000);
+</script>
+
+</html>

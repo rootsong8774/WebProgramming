@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>산수를 풀어봅시다.</title>
+
+</head>
+
+<body onload = 'init()'>
+    <h3>산수 문제를 풀어 봅시다.</h3>
+    <p>문제는 자동으로 생성되며, 10초가 지나면 자동 채점됩니다.</p>
+    <p id="countDown"></p>
+    <hr>
+    <table id='probSheet'>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="text" id="ans1"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="text" id="ans2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="text" id="ans3"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"><input type="text" id="ans4"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="다시" id="retry"></td>
+            <td>
+                <div></div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+<script>
+    let rows = document.getElementById('probSheet').getElementsByTagName('tr');
+    let count = 0;
+    let lastRow = rows[rows.length - 1].getElementsByTagName('td')[1];
+    lastRow.style.width = '40px';
+    let probSet = new Array();
+    function generateProblemSet() {
+        probSet = [];
+        const opArr = ['+', '-', '*', '/'];
+        let ranNum1, ranNum2, ranOp;
+        for (let i = 0; i < 4; i++) {
+            ranNum1 = Math.floor((Math.random() * 99) + 1);
+            ranNum2 = Math.floor((Math.random() * 9) + 1);
+            ranOp = Math.floor(Math.random() * 4);
+            probSet.push(ranNum1 + opArr[ranOp] + ranNum2);
+
+        }
+
+        return probSet;
+    }
+
+    function countDown(duration) {  
+        let secondsRemaining = duration;
+        let countInterval = setInterval(function() {
+            secondsRemaining = secondsRemaining - 1;   
+            document.getElementById('countDown').textContent = '남은 시간은 ' + secondsRemaining + '초';   
+             
+            if (secondsRemaining == 0) {
+                clearInterval(countInterval)
+                
+            };
+        }, 1000);
+        
+        
+        
+    }
+    probSet = generateProblemSet();
+
+    for (let r = 0; r < rows.length - 1; r++) {
+            let cells = rows[r].getElementsByTagName('td');
+            cells[0].innerHTML = probSet[r];
+            cells[0].style.width = '60px';
+            cells[1].firstChild.style.width = '80px'
+        }
+    
+    function scoring() {
+        for (let i = 0; i < rows.length - 1; i++) {
+            let ansNum = document.getElementById("ans" + (i + 1)).value;
+            let cells = rows[i].getElementsByTagName('td');
+            if (Math.floor(eval(probSet[i])) == ansNum) {
+                cells[0].style.textDecoration = 'line-through';
+                count++;
+            }
+            ans = '';
+        }
+        lastRow.innerHTML = count;
+        
+    }
+
+    function init() {  
+        probSet = generateProblemSet();
+        lastRow.innerHTML = 0;
+        for (let r = 0; r < rows.length - 1; r++) {
+            let cells = rows[r].getElementsByTagName('td');
+            cells[0].style.textDecoration = '';
+            cells[0].innerHTML = probSet[r];
+            document.getElementById("ans" + (r + 1)).value = '';
+
+        }
+        countDown(10);
+        setTimeout(scoring, 10000);
+    }
+    
+    
+    
+    
+    document.getElementById('retry').addEventListener('click', init);
+
+
+</script>
+
+</html>
