@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('*').css('color', 'green');
+            $('#Lastname').css('fontWeight', 'bold');
+            $('.intro').css('color', 'red');
+            $('.intro, #Lastname').css('background-color', 'rgb(187,187,0)');
+            $('p:first').css('font-style', 'italic');
+            $('p:last').css('fontWeight', 'bold');
+            $('li:parent').css('background', 'rgb(187,187,187)');
+            $('[id *=s] > *').css('color', 'blue');
+
+        });
+    </script>
+</head>
+<body>
+    <h1>Home Page</h1>
+    <div class="intro">
+        <p>My Name is GilDong <span id="Lastname">Hong</span></p>
+        <p id="my-Address">I live in Seoul</p>
+        <p>I have many friends:</p>
+    </div>
+    <ul id="ListFriends">
+        <li> 박명수</li>
+        <li> 김수미</li>
+        <li> 최병서</li>
+        <li> 이순신</li>
+    </ul>
+    <p>나는 영화를 좋아한다.</p>
+    <h3>우리는 모두 동물이다.</h3>
+    <p>우리는 모두 서로 영향 관계에 있다.</p>
+    <table>
+        <tr>
+            <th>이름</th>
+            <th>타입</th>
+        </tr>
+        <tr>
+            <td>홍길동</td>
+            <td>강아지</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+    
+</body>
+</html>
