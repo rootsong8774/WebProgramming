@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/c08.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#exchangerates').append('<div id="rates"></div><div id="reload"></div>');
+            function loadRates() {
+                $.getJSON("data/05_rates.json").done(
+                    function (data) {
+                        let date = new Date();
+                        let hours = date.getHours();
+                        let minutes = date.getMinutes();
+                        let message = '<h2>Exchange Rates</h2>';
+                        $.each(data, (indexInArray, valueOfElement) => {
+                            message += '<div>' + indexInArray + ':' + valueOfElement + '</div>';
+                        })
+                        message += '<br>Last update: ' + hours + ':' + minutes + "<br>";
+                        $('#rates').html(message);
+                    }
+                ).fail(() => {
+                    $('#exchangerates').text('Sorry, we cannot load rates');
+                }).always(() => {
+                    let reload = '<a id="refresh" href="#">';
+                    reload += '<img src="img/refresh.png" alt="refresh"></a>';
+                    $('#reload').html(reload);
+                    $('#refresh').on('click', function (e) {
+                        e.preventDefault();
+                        loadRates();
+                    });
+                });
+            }
+            loadRates();
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <section id="content">
+        <div class="half">
+            <img src="img/register-circuitboard.jpg" alt="circuit bord">
+        </div>
+        <div class="half" id="exchangerates"></div>
+    </section>
+</body>
+
+</html>

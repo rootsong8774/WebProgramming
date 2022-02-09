@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/c08.css">
+    <script>
+        function loadImages() {
+            let xhr = new XMLHttpRequest();
+            xhr.onload = () => {
+                let responseObject = JSON.parse(xhr.responseText);
+                let newContent = '';
+                for (let event of responseObject.events) {
+                    newContent += '<div class="event">';
+                    newContent += '<img src="' + event.map + '"';
+                    newContent += 'alt=' + event.location + '"/>';
+                    newContent += '<p><b>' + event.location + '</b><br>';
+                    newContent += event.date + '</p>';
+                    newContent += '</div>';
+                }
+                document.getElementById('content').innerHTML = newContent;
+
+            };
+            xhr.open('GET', 'data/03_data.json', true);
+            xhr.send(null);
+        }
+    </script>
+</head>
+
+<body onload="loadImages()">
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <h2>Bus Station Here</h2>
+    <section id="content"></section>
+</body>
+
+</html>

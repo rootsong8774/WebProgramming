@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/c08.css">
+    <script>
+        function loadImages() {
+            let xhr = new XMLHttpRequest();
+
+            xhr.onload = () => {
+                let response = xhr.responseXML;
+                let events = response.getElementsByTagName('event');
+                for (let event of events) {
+                    let container, image, location, city, newline;
+                    container = document.createElement('div');
+                    container.className = 'event';
+                    image = document.createElement('img');
+                    image.setAttribute('src',
+                        event.getElementsByTagName('map')[0].firstChild.nodeValue)
+                    image.setAttribute('alt',
+                        event.getElementsByTagName('location')[0].firstChild.nodeValue)
+                    container.appendChild(image);
+                    location = document.createElement('p');
+                    city = document.createElement('b');
+                    newline = document.createElement('br');
+                    city.appendChild(document.createTextNode(event.
+                        getElementsByTagName('location')[0].firstChild.nodeValue));
+                    location.appendChild(newline);
+                    location.insertBefore(city, newline);
+                    location.appendChild(document.createTextNode(event.
+                        getElementsByTagName('date')[0].firstChild.nodeValue));
+                    container.appendChild(location);
+                    document.getElementById('content').appendChild(container);
+                }
+            };
+            xhr.open('GET', 'data/02_data.xml');
+            xhr.send(null);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <h2>Bus Station Here</h2>
+    <section id="content"></section>
+</body>
+
+</html>

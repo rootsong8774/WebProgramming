@@ -1,0 +1,17 @@
+<events>
+    <event>
+        <location>San Francisco</location>
+        <date>1st May</date>
+        <map>img/map-ca.png</map>
+    </event>
+    <event>
+        <location>Texas</location>
+        <date>15th May</date>
+        <map>img/map-tx.png</map>
+    </event>
+    <event>
+        <location>New York</location>
+        <date>30th May</date>
+        <map>img/map-ny.png</map>
+    </event>
+</events>

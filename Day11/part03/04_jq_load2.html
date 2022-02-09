@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/c08.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('nav a').on('click', function (e) {
+                e.preventDefault();
+                var url = this.href;
+
+                $('nav a.current').removeClass('current');
+                $(this).addClass('current');
+
+                $('#container').remove();
+                $('#content').load(url + ' #container').hide().fadeIn('slow');
+            });
+
+
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+        <nav>
+            <a href="04_jq_load.html">HOME</a>
+            <a href="04_jq_load2.html" class="current">ROUTE</a>
+            <a href="04_jq_load3.html">TOYS</a>
+        </nav>
+    </header>
+    <section id="content">
+        <div id="container">
+            <h2>Bus Station here</h2>
+            <h2>15 tons of fun !!!</h2>
+            <div class="event">
+                <img src="img/map-ca.jpg" alt="San Francisco">
+                <p><b>San Francisco</b><br>1st May</p>
+            </div>
+            <div class="event">
+                <img src="img/map-tx.jpg" alt="Texas">
+                <p><b>Texas</b><br>15th May</p>
+            </div>
+            <div class="event">
+                <img src="img/map-ny.jpg" alt="New York">
+                <p><b>New York</b><br>30th May</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

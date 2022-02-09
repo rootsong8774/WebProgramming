@@ -1,0 +1,7 @@
+{
+    "events": [
+        {"location": "San Francisco", "date": "1st May", "map": "img/map-ca.png" },
+        {"location": "Texas", "date": "15th May", "map": "img/map-tx.png" },
+        {"location": "New York", "date": "30th May", "map": "img/map-ny.png" }
+    ]
+}
