@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>window.onload</title>
+
+    <link rel="stylesheet" href="css/c08.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/a11y-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body>
+    <header>
+        <h1>RootSong</h1>
+        <nav>
+            <a href="#" >HOME</a>
+            <a href="#" class="current">JavaScript</a>
+            <a href="#">React</a>
+            <a href="#">Spring</a>
+        </nav>
+    </header>
+
+    <section id="content">
+        <div id="container">
+            <h2>window.onload</h2>
+            <div>
+                <ul>
+                    <li> 페이지 내의 사진 위에서 마우스 휠을 올리고 내려 확대/축소 하는 event를 다음과 같이 작성하였다.</li>
+                </ul>
+            </div>
+<pre class="javascript">
+    <code>
+        const img = new Image();
+        img.src = "../media/tulips.png";
+        let width = img.width;
+        let height = img.height;
+        const ratio = width / height;
+        var imgTulips = document.getElementById("tulips");
+        var unit = 10;
+        
+        function zoomIn() {
+            width = ratio * (height + unit);
+            height += unit;
+            imgTulips.style.width = width + "px";
+            imgTulips.style.height = height + "px";
+            return false;
+        }
+        
+        function zoomOut() {
+            width = ratio * (height - unit);
+            height -= unit;
+            imgTulips.style.width = width + "px";
+            imgTulips.style.height = height + "px";
+            return false;
+        }
+        imgTulips.onwheel = function (e) {
+            if (e.wheelDelta === -120) {
+                zoomIn();
+            } else if (e.wheelDelta === 120) {
+                zoomOut();
+            }
+        };
+    </code>
+</pre> 
+<ul>
+    <li>하지만 해당 script를 포함하는 page를 브라우저에 로드했을때 첫 이벤트 실행단계에서 다음의 문제가 발생하였다.</li>
+</ul>
+<ol>
+    <li>scroll up으로 image를 축소하는 이벤트가 발생하지 않음</li>
+    <li>scroll down 실행시 사진의 width, height가 0px로 고정</li>
+    <li>실제로 scroll down 하기전의 width를 console.log를 통해 확인해보면 NaN으로 나오거나 0px로 표기된다.</li>
+    <li>vscode에서 지원하는 liveserver를 통해 해당 page에 접근한 후 새로고침을 시행하면 모든것이 정상적으로 작동한다.</li>
+    <li>localfile로 해당 page를 브라우저에 로드하면 새로고침과 상관없이 위의 1-3번 문제가 발생한다.</li>
+</ol>
+<ul>
+    <li>이 문제를 해결하기 위해서 <in-code>window.onload</in-code>에 해당 함수를 다음과 같이 오버라이딩 하면 모든 문제가 해결된다.</li>
+</ul>
+        </div>
+    </section>
+
+</body>
+
+</html>

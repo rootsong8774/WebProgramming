@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비동기 함수 사용에 주의할 점</title>
+
+    <link rel="stylesheet" href="css/c08.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/a11y-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body>
+    <header>
+        <h1>RootSong</h1>
+        <nav>
+            <a href="#" >HOME</a>
+            <a href="#" class="current">JavaScript</a>
+            <a href="#">React</a>
+            <a href="#">Spring</a>
+        </nav>
+    </header>
+
+    <section id="content">
+        <div id="container">
+            <h2>비동기 함수 사용에 주의할 점</h2>
+            <h3>1. 모든 비동기 실행함수를 Promisify하는 것은 아니다.</h3>
+            <ul>
+                <li><in-line>setTimeout</in-line>,<in-line>readFile</in-line>과 같은 비동기 실행함수를 Promise 객체 기반의 코드로 변환하는 작업을 Promisify라고 한다. Promisify를 하면 then 메소드를 활용하여 좀더 깔끔하게 코드를
+                작성할 수도 있고, 순차적으로 다수의 콜백을 실행해야 할 때 콜백 헬(Callback hell)에 빠지지 않을 수 있다.</li>
+                <li>하지만 모든 비동기 실행함수에 대해서 Promisify를 할 수 있는 것은 아니다. 결론부터 말하자면 비동기 실행 함수들 중에서 해당 콜백을 단 한번만 실행하는 것들만 사용하는 것이 좋다. 왜냐하면 Promise
+                객체는 한번 pending 상태에서 fulfilled 상태나 rejected상태로 전환되면 그 뒤로는 그 상태와 결과가 바뀌지 않기 때문이다.</li>
+<pre class="javascript">
+    <code>
+        let count = 0;
+        
+        function addEventListener_promisified(obj, eventName) {
+            const p = new Promise((resolve, reject) => {
+                obj.addEventListener(eventName, () => {
+                    count += 1;
+                    resolve(count);
+                });
+            });
+            return p;
+        }
+        
+        addEventListener_promisified(box, 'click')
+            .then((eventCount) => { console.log(eventCount); });
+    </code>
+</pre>
+                <li>위 코드는 DOM 객체인 box를 클릭했을 때 그 클릭 이벤트에 반응하여 클릭회수를 count하도록 작성한 것이다. 하지만 이 코드를 실행하고 box를 클릭해보면 처음 클릭했을 때 출력되는 1이후에는 count가
+                올라가지 않는다.</li>
+                <li>이유는 위에서 언급한 것처럼 box를 클릭하여<in-line>addEventListener_promisified</in-line> 함수를 수행하고나면 <in-line>Promise</in-line> 객체가 fullfiled 상태로 전환되고 
+                    이에 따라 <in-line>Promise</in-line> 객체의 상태 및 결과가 고정되어 그 이후로 바뀌지 않기 때문이다.</li>
+                <li>따라서 동일한 콜백을 여러번 실행해야하는 비동기 실행 함수인 경우에는 Promisify를 하면 안 된다.</li>
+            </ul>
+            <h3>2. async 함수 안에서 반복 처리가 필요할 때 주의사항</h3>
+<pre class="javascript">
+    <code>
+        async function getResponses(urls) {
+            for(const url of urls){
+                const response = await fetch(url);
+                console.log(await response.text());
+            }
+        }
+    </code>
+</pre>
+            <ul>
+                <li>위의 코드는 여러 URL들이 있는 배열을 받아서 각 URL에 request를 보내고 그 response 내용을 출력한다. 작업 순서를 생각해보면 1번 URL을 request하고 그 response 내용을 출력한
+                다음에야 2번 URL로 넘어간다. 물론 순서대로 작업을 해야한다면 이렇게 작성하는 것이 좋겠지만 순서가 중요하지 않다면 이러한 방식은 URL의 양이 방대해졌을 때 성능에 문제를 일으킬 수 있다. 이렇게 반복문이
+                요구되는 상황에서는 다음과 같이 바꿔서 작성하는 것이 좋다</li>
+<pre class="javascript">
+    <code>
+        async function fetchUrls(urls){
+            for(const url of urls){
+                (async () => { // 추가된 부분!
+                    const response = await fetch(url);
+                    console.log(await response.text());
+                })(); // 추가된 부분!
+            }
+        }
+    </code>
+</pre>
+                <li>3번 줄 처럼 즉시실행되는 async 함수로 감싸주면 각 URL 에 대해서 <in-line>fetch</in-line>를 수행하고 fulfilled나 reject가 될 때까지 익명 함수에 의한 Execution Context를 빠져나와 다음
+                URL을 선택하고 해당 URL에 대해서 <in-line>fetch</in-line>를 수행하는 식으로 작동하게 된다.
+                <br><br>
+                다시 말해, 이전 URL에 대한 response를 기다렸다가 다음 URL에 request를 보내는 식이 아니라 각 URL에 대해서 <in-line>fetch</in-line> 함수를 먼저 순차적으로 실행해서 request를 먼저 보낸다음
+                fulfilled가 되는 순서대로 response를 받아서 해당 내용이 출력되는 것이다.</li>
+            </ul>
+
+
+        </div>
+    </section>
+
+</body>
+
+</html>
