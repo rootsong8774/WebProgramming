@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/c08.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let times;
+
+            function loadTimetable() {
+                $.getJSON("../data/01_ajax.json").done(
+                    (data) => { times = data; }
+                ).fail(() => {
+                    $('#event').html('Failed to get the current schedule.');
+                });
+            }
+            loadTimetable();
+            $('#content').on('click', '#event a', function (e) {
+                e.preventDefault();
+                let loc = this.id.toUpperCase();
+                let newContent = '';
+                times[loc].forEach(element => {
+                    newContent += '<li><span class = "time">' + element.time + '</span>';
+                    newContent += '<a href="descriptions.html#';
+                    newContent += element.title.replace(/ /g, '-') + '">';
+                    newContent += element.title + '</a></li>';
+                });
+                console.log(times[loc]);
+                $('#sessions').html('<ul>' + newContent + '</ul>');
+                $('#event a.current').removeClass('current');
+                $(this).addClass('current');
+                $('#details').text('');
+            });
+
+            $('#content').on('click', '#sessions li a', function (e) {
+                e.preventDefault();
+                let fragment = this.href;
+                fragment = fragment.replace('#', ' #');
+                $('#details').load(fragment);
+                $('#sessions a.current').removeClass('current');
+                $(this).addClass('current');
+            });
+
+            $('nav a').on('click', function (e) {
+                e.preventDefault();
+                let url = this.href;
+                $('nav a.current').removeClass('current');
+                $(this).addClass('current');
+                $('#container').remove();
+                $('#content').load(url + ' #container').hide().fadeIn();
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+        <nav>
+            <a href="01_jq_ajax.html">HOME</a>
+            <a href="01_jq_ajax2.html">ROUTE</a>
+            <a href="01_jq_ajax3.html">TOYS</a>
+            <a href="02_ajax_json.html" class="current">TIMETABLE</a>
+        </nav>
+    </header>
+    <section id="content">
+        <div id="container">
+            <h2>Go! Bus Maker!</h2>
+            <div class="third">
+                <div id="event">
+                    <a href="ca.html" id="ca"><img src="../img/map-ca.png" alt="San Francisco">San Francisco</a>
+                    <a href="tx.html" id="tx"><img src="../img/map-tx.png" alt="Texas">Texas</a>
+                    <a href="ny.html" id="ny"><img src="../img/map-ca.png" alt="New York">New York</a>
+                </div>
+            </div>
+            <div class="third">
+                <div id="sessions">
+                    <p>Choose the event on the left side.</p>
+                </div>
+            </div>
+            <div class="third">
+                <div id="details"> </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+{
+  "CA": [
+    { "time": "9:00", "title": "3D Modeling" },
+    { "time": "10:00", "title": "Circuit Hacking" },
+    { "time": "11:30", "title": "Aduino" },
+    { "time": "13:00", "title": "Lunch" },
+    { "time": "14:00", "title": "Drone" },
+    { "time": "91500", "title": "Future Prospect" }
+  ],
+  "TX": [
+    { "time": "9:00", "title": "Future Prospect" },
+    { "time": "10:00", "title": "Circuit Hacking" },
+    { "time": "11:30", "title": "PCB Design" },
+    { "time": "13:00", "title": "Lunch" },
+    { "time": "14:00", "title": "Drone" },
+    { "time": "15:00", "title": "Future Prospect" }
+  ],
+  "NY": [
+    { "time": "9:00", "title": "PCB Design" },
+    { "time": "10:00", "title": "Circuit Hacking" },
+    { "time": "11:30", "title": "PCB Design" },
+    { "time": "13:00", "title": "Lunch" },
+    { "time": "14:00", "title": "Drone" },
+    { "time": "15:00", "title": "Embedded System" }
+  ]
+}

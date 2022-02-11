@@ -1,0 +1,7 @@
+{
+  "products": [
+    { "name": "Milk", "price": "2000" },
+    { "name": "Red Tea", "price": "5000" },
+    { "name": "Coffee", "price": "3000" }
+  ]
+}

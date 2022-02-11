@@ -1,0 +1,16 @@
+<products>
+    <product>
+        <name>"Milk"</name>
+        <price>"2000"</price>
+    </product>
+    <product>
+        <name>"Red tea"</name>
+        <price>"5000"</price>
+    </product>
+    <product>
+        <name>"Coffee"</name>
+        <price>"3000"</price>
+    </product>
+</products>
+
+
