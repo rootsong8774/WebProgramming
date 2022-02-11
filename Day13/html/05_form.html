@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/c09.css">
+    <link rel="stylesheet" href="../css/pepper-grinder/jquery-ui-1.10.3.custom.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $('#arrival').datepicker();
+
+            let $amount = $('#amount');
+            let $range = $('#price-range');
+
+            $('#price-range').slider({
+                range: true,
+                min: 0,
+                max: 400,
+                values: [175, 300],
+                slide: function (event, ui) {
+                    $amount.val('$' + ui.values[0] + ' - $' + ui.values[1]);
+                }
+            });
+            $amount.val('$' + $range.slider('values', 0) + ' - $' + $range.slider('values', 1));
+
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Find Accomodation</h2>
+    <p id="price">
+        <label for="amount">Price range:</label>
+        <input type="text" id="amount">
+    </p>
+    <div id="price-range"></div>
+    <p>
+        <label for="arrival">Arrival Date:</label>
+        <input type="text" id="arrival">
+    </p>
+    <input type="submit" value="Find a hotel">
+</body>
+
+</html>

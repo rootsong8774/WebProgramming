@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/c09.css">
+    <link rel="stylesheet" href="../css/pepper-grinder/jquery-ui-1.10.3.custom.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $('#prizes').accordion(
+                {
+                    headers: '> h3',
+                    collapsible: true,
+                    active: 2
+                }
+            );
+        })
+    </script>
+    <title>Document</title>
+
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <h2>Products</h2>
+    <div class="third img"><img src="../img/toys1.jpg" alt="circuit board"></div>
+    <div class="two-thirds">
+        <div id="prizes">
+            <h3>1st prize</h3>
+            <div>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                    make a type specimen
+                    book. </p>
+            </div>
+            <h3>2nd prize</h3>
+            <div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore
+                    magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+                    commodo
+                    consequat. Duis
+                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                </p>
+            </div>
+            <h3>3rd prize</h3>
+            <div>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
+                    totam rem
+                    aperiam,
+                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    Nemo enim
+                    ipsam
+                    voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+                    qui ratione
+                    voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet,
+                    consectetur,
+                    adipisci velit,
+                    sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat
+                    voluptatem. </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

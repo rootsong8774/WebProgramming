@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/c09.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <div class="third">
+        <p class="welcome">Tell your friends to join us for an awesome day of tinkering with the Maker bus...</p>
+        <form action="">
+            To:<br>
+            <input ng-model="name" type="text"><br>
+            Message:<br>
+            <textarea ng-model="message"></textarea>
+            <input type="submit" class="send message">
+        </form>
+    </div>
+    <div class="two-thirds">
+        <div class="postcard">
+            <div>{{ name }}</div>
+            <p> {{ message }} </p>
+        </div>
+    </div>
+</body>
+
+</html>

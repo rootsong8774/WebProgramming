@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/c09.css">
+    <script src="../js/modernizr.2.7.1.js"></script>
+    <script>
+        window.onload = function () {
+            let latitude;
+            let longitude;
+            let loc = document.getElementById('loc');
+            function getLocation() {
+
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+
+                    msg = '<h3>Longitude : <br>' + longitude + '</h3>';
+                    msg += '<h3>Latitude : <br>' + latitude + '</h3>';
+                    loc.innerHTML = msg;
+                }, fail);
+            }
+        }
+        getLocation();
+
+        function fail(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED: 
+                    loc.innerHTML = "PERMISSION_DENIED";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    loc.innerHTML = "POSITION_UNAVAILABLE";
+                    break;
+                default:
+                    
+            }
+        }
+
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <h2>Where are you?</h2>
+    <div class="third"><img src="../img/toys1.jpg" alt="circuit boards"></div>
+    <div class="third" id="loc">Find your location</div>
+    <div class="third"><img src="../img/toys2.jpg" alt="circuit boards"></div>
+
+</body>
+
+</html>

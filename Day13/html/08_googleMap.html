@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/c09.css">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 20px;
+            height: 100%;
+        }
+
+        #map {
+            width: 400px;
+            height: 400px;
+            padding: 50px;
+
+        }
+    </style>
+    <script>
+        function init() {
+            var mapOptions = {
+                center: new google.maps.LatLng(37.55668924378999, 127.04295105351378),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                zoom: 13
+            }
+            var venueMap;
+            venueMap = new google.maps.Map(document.getElementById('map'), mapOptions);
+        }
+        function loadScript() {
+            var script = document.createElement('script');
+            script.src = 'http://maps.googleapis.com/maps/api/js?sensor=false&callback=init';
+            document.body.appendChild(script);
+        }
+
+        window.onload = loadScript;
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Bus Maker</h1>
+    </header>
+    <p><strong>서울특별시 성동구</strong><br>왕십리로 213</p>
+    <div id="map"></div>
+</body>
+
+</html>
