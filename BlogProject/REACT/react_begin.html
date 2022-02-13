@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebStorm으로 React 시작하기</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Oswald:700,400);
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+    nav {
+        height: 100px;
+        font-size: 40px !important;
+        font-family: oswald, arial, sans-serif;
+    }
+
+    .dropdown-toggle::after {
+        content: none;
+    }
+
+    .dropdown-toggle {
+        margin-right: 60px;
+    }
+</style>
+<link rel="stylesheet" href="../css/c08.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-dark-reasonable.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarColor03">
+                <ul class="navbar-nav ">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../home.html">Home</a>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">JavaScript</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../JAVASCRIPT/window_onload.html">Window.onload</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/prevTarget.html">prevTarget</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/change_event.html">Change Event</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/arrow_function.html">Arrow function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/fetch.html">fetch function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/async_function.html">asynchronous function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/boolean.html">etcs</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">React</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="react_begin.html">React</a>
+                            <a class="dropdown-item" href="jsx.html">JSX</a>
+                            <a class="dropdown-item" href="component.html">Component</a>
+                            <a class="dropdown-item" href="props.html">Props</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">Spring</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../SPRING/springboot_start.html">Spring boot</a>
+                            <a class="dropdown-item" href="../SPRING/static_content.html">Static contents</a>
+                            <a class="dropdown-item" href="../SPRING/mvc.html">MVC and Template Engine</a>
+                            <a class="dropdown-item" href="../SPRING/api.html">API</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="content">
+        <div id="container">
+            <h2>WebStorm으로 React 시작하기</h2>
+            <h3>React에 대하여</h3>
+            <ul>
+                <li>VirtualDOM : React가 관리하는 가상 DOM. (브라우저의 DOM과 다름)</li>
+                <ul>
+                    <li>페이지 내의 내용이 변경되면 VirtualDOM은 차이가 있는 부분을 확인한다.</li>
+                    <li>자체적으로 변경된 부분만 찾아서 Reflow(재렌더링) 한다.</li>
+                </ul>
+                <li>JSX (JavaScript + XML) : JavaScript를 확장한 프로그래밍 언어.</li>
+            </ul>
+
+            <h3>설치</h3>
+            <ol>
+                <li>Node.js 설치</li>
+                <li>React 설치</li>
+<pre class="javascript">
+    <code>
+    C:\Users\user>npm install -g create-react-app
+    </code>
+</pre>
+                <li>WebStorm 설치</li>
+            </ol>
+            <h3>React 프로젝트 생성 및 실행</h3>
+            <ol>
+                <li>New Project 생성 (왼쪽 Side bar의 React App 선택)</li>
+                <div>
+                    <img src="../img/newproject.PNG" alt="">
+                </div>
+                <li>터미널에서 <in-code>npm start</in-code> 를 실행한다. (개발 모드 실행)</li>
+                <div>
+                    <img src="../img/runreact.PNG" alt="">
+                </div>
+                <li>package.json의 dependencis에 axios 버전을 추가해준다.</li>
+<pre class="javascript">
+    <code>
+    "dependencies": {
+        "axios": "^0.25.0",
+    ...
+    </code>
+</pre>
+                <li>개발 모드 종료할 때는 터미널에서 Ctrl+C를 입력한다.</li>
+            </ol>
+
+        </div>
+    </section>
+</body>
+</html>

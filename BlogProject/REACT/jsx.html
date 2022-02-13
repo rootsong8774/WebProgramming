@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Oswald:700,400);
+    @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+    nav {
+        height: 100px;
+        font-size: 40px !important;
+        font-family: oswald, arial, sans-serif;
+    }
+
+    .dropdown-toggle::after {
+        content: none;
+    }
+
+    .dropdown-toggle {
+        margin-right: 60px;
+    }
+</style>
+<link rel="stylesheet" href="../css/c08.css">
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/atom-one-dark-reasonable.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../img/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+                aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarColor03">
+                <ul class="navbar-nav ">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../home.html">Home</a>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle " data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">JavaScript</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../JAVASCRIPT/window_onload.html">Window.onload</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/prevTarget.html">prevTarget</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/change_event.html">Change Event</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/arrow_function.html">Arrow function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/fetch.html">fetch function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/async_function.html">asynchronous function</a>
+                            <a class="dropdown-item" href="../JAVASCRIPT/boolean.html">etcs</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">React</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="react_begin.html">React</a>
+                            <a class="dropdown-item" href="jsx.html">JSX</a>
+                            <a class="dropdown-item" href="component.html">Component</a>
+                            <a class="dropdown-item" href="props.html">Props</a>
+                        </div>
+                    </li>
+            
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">Spring</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../SPRING/springboot_start.html">Spring boot</a>
+                            <a class="dropdown-item" href="../SPRING/static_content.html">Static contents</a>
+                            <a class="dropdown-item" href="../SPRING/mvc.html">MVC and Template Engine</a>
+                            <a class="dropdown-item" href="../SPRING/api.html">API</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="content">
+        <div id="container">
+            <h2>JSX</h2>
+            <ul>
+                <li>JSX : JavaScript를 확장한 문법으로 XML과 비슷하게 생겼으며, 
+                    오직 React 프로젝트를 개발할 때만 사용되기 때문에 공식적인 자바스크립트 문법은 아니다.</li>
+                <li>브라우저에서 실행하기 전에 바벨을 사용하여 일반 자바스크립트 형태로 코드가 변환된다.</li>
+                <li>XML과 비슷하기 때문에 DOM객체에서 html, xml의 문법을 거의 그대로 쓸 수 있지만, 다음에 한해서는 주의해야한다.</li>
+                <ul>
+                    <li><in-code>class</in-code> : Javascript와 xml 모두에 <in-code>class</in-code>라는 키워드와 속성이 존재하기 때문에 xml에 속성으로 
+                        <in-code>class</in-code>를 지정할 때는 기존의 xml처럼 <in-code>class</in-code>가 아닌 <in-code>className</in-code>으로 지정해주어야한다.
+                    물론 JSX에서 <in-code>className</in-code>으로 적었지만 실제 html파일에는 <in-code>class</in-code>로 변환된다.</li>
+                    <li><in-code>for</in-code> : xml에서 <in-code>label</in-code>l의 속성으로 JavaScript의 반복문 키워드로 사용되기 때문에 xml에 속성으로 
+                        <in-code>for</in-code>를 지정할 때는 기존의 <in-code>for</in-code>가 아닌 <in-code>htmlFor</in-code>로 지정해 주어야 한다.</li>
+                    <li>eventHandler : 기존의 html문법에서 eventHandler는 <in-code>onmouseover</in-code>처럼 모두 소문자로 적었지만 JSX에서는 두 번째 단어부터 첫 글자를 대문자로 적는 camelCase로 적어야한다.
+                    (즉, <in-code>onMouseOver</in-code>)</li>
+                </ul>
+                <li>JSX의 요소들은 반드시 단 하나의 태그로 감싸주어야 한다.</li>
+                <ul>
+                    <li>아래의 경우 처럼 두 개의 <in-code>p</in-code> 태그를 그냥 두는 것이 아니라 <in-code>div</in-code> 로 감싸주어야 한다.</li>
+<pre class="javascript">
+    <code>
+    ReactDOM.render(
+        &#60;div>
+            &#60;p>안녕&#60;/p>
+            &#60;p>리액트!&#60;/p>
+        &#60;/div>,
+        document.getElementById('root')
+    );
+    </code>
+</pre>
+                    <li>우리가 구성하고자 하는 page가 div로 감싸진 형태가 아닐 때는 다음과 같이 Fragment 태그를 써주면 된다. Fragment로 감싸고 page를 열면 html내에는 Fragment를 제외한 모든 태그가
+                    표시된다.</li>
+<pre class="javascript">
+    <code>
+    ReactDOM.render(
+        &#60;Fragment>
+            &#60;p>안녕&#60;/p>
+            &#60;p>리액트!&#60;/p>
+        &#60;/Fragment>,
+        document.getElementById('root')
+    );
+    </code>
+</pre>                    
+                    <li>Fragment 태그는 다음과 같이 생략해서 사용할 수 있으므로 앞으로는 생략한 태그로 작성하도록 하자.</li>
+<pre class="javascript">
+    <code>
+    ReactDOM.render(
+        <>
+            &#60;h1 id="title">가위바위보&#60;/h1>
+            &#60;button className="hand">가위&#60;/button>
+            &#60;button className="hand">바위&#60;/button>
+            &#60;button className="hand">보&#60;/button>
+        </>,
+        document.getElementById('root')
+    );
+    </code>
+</pre>
+                </ul>
+            </ul>
+        </div>
+    </section>
+</body>
+
+</html>
